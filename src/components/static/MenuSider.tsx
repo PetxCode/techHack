@@ -1,7 +1,10 @@
 import { AiOutlineHome } from "react-icons/ai";
+import { IoCreateOutline } from "react-icons/io5";
+import { FaProjectDiagram } from "react-icons/fa";
 import pix from "../../assets/pix.jpg";
 import { useToggle } from "../../global/jotai";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MenuSider = () => {
   const [state, setState] = useToggle();
@@ -24,41 +27,51 @@ const MenuSider = () => {
           <br />
           <br />
           <div>
-            <div
-              className="flex items-center px-4 hover:cursor-pointer mt-4 
-           hover:bg-purple-100 py-4 transition-all duration-300 "
-            >
-              <AiOutlineHome size={25} />
+            <Link to="/">
               <div
-                className="text-[13px] uppercase ml-1 
+                className="flex items-center px-4 hover:cursor-pointer mt-4 
+           hover:bg-purple-100 py-4 transition-all duration-300 "
+              >
+                <AiOutlineHome size={25} />
+                <div
+                  className="text-[11px] uppercase ml-1 
           "
+                  onClick={() => {
+                    setState(true);
+                  }}
+                >
+                  Deshboard
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/">
+              <div
+                className="flex items-center px-4 hover:cursor-pointer  
+           hover:bg-purple-100 py-4 transition-all duration-300"
                 onClick={() => {
                   setState(true);
                 }}
               >
-                Home
+                <FaProjectDiagram size={25} />
+                <div className="text-[11px] uppercase  ml-1 ">Projects</div>
               </div>
-            </div>
-            <div
-              className="flex items-center px-4 hover:cursor-pointer  
+            </Link>
+
+            <Link to="/create-project">
+              <div
+                className="flex items-center px-4 hover:cursor-pointer 
            hover:bg-purple-100 py-4 transition-all duration-300"
-              onClick={() => {
-                setState(true);
-              }}
-            >
-              <AiOutlineHome size={25} />
-              <div className="text-[13px] uppercase  ml-1 ">Home1</div>
-            </div>
-            <div
-              className="flex items-center px-4 hover:cursor-pointer 
-           hover:bg-purple-100 py-4 transition-all duration-300"
-              onClick={() => {
-                setState(true);
-              }}
-            >
-              <AiOutlineHome size={25} />
-              <div className="text-[13px] uppercase  ml-1 ">Home2</div>
-            </div>
+                onClick={() => {
+                  setState(true);
+                }}
+              >
+                <IoCreateOutline size={25} />
+                <div className="text-[11px] uppercase  ml-1 ">
+                  Create Project
+                </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex-1" />
