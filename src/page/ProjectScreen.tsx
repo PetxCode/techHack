@@ -5,7 +5,7 @@ const ProjectScreen = () => {
   let data = Array.from({ length: 10 });
   console.log(data);
   return (
-    <div className="w-[100%] ">
+    <div className="w-[100%] mt-[50px]">
       <div className=" flex items-center flex-col ">
         {/* <img className="w-[100%] h-[400px] bg-purple-200" /> */}
         <div className="w-[80%] border mt-6 items-center flex flex-col ">
@@ -18,7 +18,7 @@ const ProjectScreen = () => {
           <br />
 
           <div className="flex flex-wrap justify-center w-full  ">
-            {data.map((props) => (
+            {data.map((props: any) => (
               <div className="p-2 border rounded-sm m-2 text-[12px]  w-[300px] ">
                 <div>
                   <div className="text-[15px] font-bold capitalize ">
