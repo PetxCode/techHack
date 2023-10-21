@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { useDispatch } from "react-redux";
-// import LoadingState from "../../LoadingState";
-// import { getStart } from "../../Global/GlobalState";
-// import { signin, verifyUser } from "../../utils/API";
-
-const url = "https://codelab-hub.onrender.com";
+import decode from "jwt-decode";
+import { signInUser, verifyUser } from "../../api/API";
+import { useUserData } from "../../global/jotai";
 
 const SignIn = () => {
-  const { id, token } = useParams();
-  //   const dispatch = useDispatch();
+  const { token } = useParams();
+  const [userState, setUserState] = useUserData();
 
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -35,37 +31,38 @@ const SignIn = () => {
     console.log("Push");
     setLoading(true);
 
-    // signin(data)
-    //   .then((res) => {
-    //     dispatch(getStart(res.data.data));
+    signInUser(data)
+      .then((res: any) => {
+        setUserState(res);
 
-    //     Swal.fire({
-    //       position: "center",
-    //       icon: "success",
-    //       title: "Welcome Back on board",
-    //       showConfirmButton: false,
-    //       timer: 2500,
-    //     }).then(() => {
-    //       navigate("/dashboard");
-    //     });
-    //     setLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     Swal.fire({
-    //       title: error.response.data.message,
-    //       text: `Please check and fix this ERROR`,
-    //       icon: "error",
-    //       showConfirmButton: false,
-    //       timer: 3500,
-    //     }).then(() => {
-    //       setLoading(false);
-    //     });
-    //   });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome Back on board",
+          showConfirmButton: false,
+          timer: 2500,
+        }).then(() => {
+          navigate("/");
+        });
+        setLoading(false);
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: error.response.data.message,
+          text: `Please check and fix this ERROR`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3500,
+        }).then(() => {
+          setLoading(false);
+        });
+      });
   });
 
   useEffect(() => {
-    if (id && token) {
-      //   verifyUser(id);
+    if (token) {
+      const coded: any = decode(token);
+      verifyUser(coded.id);
     }
   }, []);
 

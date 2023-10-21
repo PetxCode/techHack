@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { createUser } from "../../api/API";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -24,30 +25,30 @@ const Register = () => {
   });
 
   const onSubmit = handleSubmit(async (data: any) => {
-    // setLoading(true);
-    // registerUser(data)
-    //   .then((res) => {
-    //     Swal.fire({
-    //       position: "center",
-    //       icon: "success",
-    //       title: "Your account has been created successfully",
-    //       showConfirmButton: false,
-    //       timer: 2500,
-    //     }).then(() => {
-    //       navigate("/confirm-account");
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     Swal.fire({
-    //       title: error.response.data.message,
-    //       text: `Please check and fix this ERROR`,
-    //       icon: "error",
-    //       showConfirmButton: false,
-    //       timer: 3500,
-    //     }).then(() => {
-    //       // setLoading(false);
-    //     });
-    //   });
+    setLoading(true);
+    createUser(data)
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your account has been created successfully",
+          showConfirmButton: false,
+          timer: 2500,
+        }).then(() => {
+          navigate("/confirm-account");
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: error.response.data.message,
+          text: `Please check and fix this ERROR`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3500,
+        }).then(() => {
+          // setLoading(false);
+        });
+      });
   });
 
   return (

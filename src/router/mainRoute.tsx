@@ -7,11 +7,17 @@ import CreateProjectScreen from "../page/CreateProject";
 import Registeration from "../page/auth/Registeration";
 import SignIn from "../page/auth/SignIn";
 import ResetScreen from "../page/auth/Register/ResetScreen";
+import ConfirmAccount from "../page/auth/ConfirmAccount";
+import PrivateRoute from "./PrivateRoute";
 
 export const mainRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
@@ -46,7 +52,17 @@ export const mainRouter = createBrowserRouter([
   },
   {
     index: true,
+    path: "/:token/sign-in",
+    element: <SignIn />,
+  },
+  {
+    index: true,
     path: "/reset",
     element: <ResetScreen />,
+  },
+  {
+    index: true,
+    path: "/confirm-account",
+    element: <ConfirmAccount />,
   },
 ]);
