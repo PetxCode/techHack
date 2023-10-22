@@ -98,6 +98,7 @@ const Sider = () => {
                 setUser(null);
 
                 navigate("/sign-in");
+                // window.location.reload();
               }}
             >
               Log Out

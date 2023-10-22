@@ -96,6 +96,7 @@ const MenuSider = () => {
               onClick={() => {
                 setUser(null);
                 navigate("/sign-in");
+                // window.location.reload();
               }}
             >
               Log Out
