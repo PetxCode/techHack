@@ -91,7 +91,7 @@ const SignIn = () => {
             </InputHolder>
             {/* <Error>{errors.password?.message}</Error> */}
             <TextHolderFile>
-              Can't remember your PASSWORD <Nav to="/reset">Reset it here</Nav>
+              Can't remember your PASSWORD <Nav to="">Reset it here</Nav>
             </TextHolderFile>
             <br />
             <Button type="submit">Sign in</Button>
