@@ -1,6 +1,5 @@
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
-import { FaProjectDiagram } from "react-icons/fa";
 import pix from "../../assets/pix.jpg";
 import { useToggle, useUserData, useUserDataState } from "../../global/jotai";
 import styled from "styled-components";
@@ -49,19 +48,6 @@ const Sider = () => {
               </div>
             </Link>
 
-            <Link to="/project">
-              <div
-                className="flex items-center px-4 hover:cursor-pointer  
-           hover:bg-purple-100 py-4 transition-all duration-300"
-                onClick={() => {
-                  setState(true);
-                }}
-              >
-                <FaProjectDiagram size={25} />
-                <div className="text-[13px] uppercase  ml-1 ">Projects</div>
-              </div>
-            </Link>
-
             <Link to="/create-project">
               <div
                 className="flex items-center px-4 hover:cursor-pointer 
@@ -74,6 +60,19 @@ const Sider = () => {
                 <div className="text-[13px] uppercase  ml-1 ">
                   Create Project
                 </div>
+              </div>
+            </Link>
+
+            <Link to="/setting">
+              <div
+                className="flex items-center px-4 hover:cursor-pointer  
+           hover:bg-purple-100 py-4 transition-all duration-300"
+                onClick={() => {
+                  setState(true);
+                }}
+              >
+                <AiOutlineSetting size={25} />
+                <div className="text-[13px] uppercase  ml-1 ">Settings</div>
               </div>
             </Link>
           </div>

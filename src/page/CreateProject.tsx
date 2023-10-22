@@ -1,6 +1,3 @@
-import { AiOutlineLike } from "react-icons/ai";
-import { BiCommentDots } from "react-icons/bi";
-import polo from "../assets/pix.jpg";
 import hard from "../assets/100.jpg";
 import styled from "styled-components";
 import { useState } from "react";

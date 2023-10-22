@@ -5,8 +5,8 @@ import { useOneUser, useProjectUser } from "../hooks/useAllUser";
 import polo from "../assets/pix.jpg";
 import { followME } from "../api/API";
 import { useUserDataState } from "../global/jotai";
+
 const ProjectScreen = () => {
-  // let data1 = Array.from({ length: 5 });
   const [userID]: any = useUserDataState();
   const { id } = useParams();
   const { data } = useProjectUser(id!);

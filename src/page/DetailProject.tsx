@@ -42,7 +42,7 @@ const DetailedProjectScreen = () => {
           <br />
 
           <img
-            src={polo}
+            src={data?.avatar ? data?.avatar : polo}
             className="w-[100%] bg-purple-200 h-[300px] object-cover"
           />
 

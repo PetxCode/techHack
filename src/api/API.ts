@@ -135,3 +135,30 @@ export const readProjectCommentReply = async (commentID: string) => {
     console.log(error);
   }
 };
+
+export const updateProfileInfo = async (userID: string, data: any) => {
+  try {
+    const config: any = {
+      "content-type": "multipart/form-data",
+    };
+    return await axios
+      .patch(`${url}/update-one-user/${userID}`, data, config)
+      .then((res: any) => {
+        return res.data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProfileNameInfo = async (userID: string, data: any) => {
+  try {
+    return await axios
+      .patch(`${url}/update-one-user-info/${userID}`, { userName: data })
+      .then((res: any) => {
+        return res.data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -9,6 +9,7 @@ import SignIn from "../page/auth/SignIn";
 import ResetScreen from "../page/auth/Register/ResetScreen";
 import ConfirmAccount from "../page/auth/ConfirmAccount";
 import PrivateRoute from "./PrivateRoute";
+import SettingScreen from "../page/SettingScreen";
 
 export const mainRouter = createBrowserRouter([
   {
@@ -37,6 +38,11 @@ export const mainRouter = createBrowserRouter([
         index: true,
         path: "create-project",
         element: <CreateProjectScreen />,
+      },
+      {
+        index: true,
+        path: "setting",
+        element: <SettingScreen />,
       },
     ],
   },
