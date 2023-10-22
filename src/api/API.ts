@@ -95,3 +95,19 @@ export const createProject = async (data: any, userID: string) => {
     console.log(error);
   }
 };
+
+export const createProjectComment = async (
+  data: any,
+  userID: string,
+  projectID: string
+) => {
+  try {
+    return await axios
+      .post(`${url}/create-comment/${userID}/${projectID}`, { title: data })
+      .then((res: any) => {
+        return res.data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};

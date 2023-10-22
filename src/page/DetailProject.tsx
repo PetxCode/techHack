@@ -2,12 +2,17 @@ import polo from "../assets/pix.jpg";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useOneProject, useOneUser } from "../hooks/useAllUser";
+import { createProjectComment } from "../api/API";
+import { useUserDataState } from "../global/jotai";
+import { useState } from "react";
 
 const DetailedProjectScreen = () => {
   const { productID, id }: any = useParams();
-
+  const [user]: any = useUserDataState();
   let { userData }: any = useOneUser(id);
   let { data } = useOneProject(productID!);
+
+  const [state, setState] = useState<string>("");
 
   return (
     <Container>
@@ -72,7 +77,12 @@ const DetailedProjectScreen = () => {
               className="text-[12px] p-4 w-[95%] h-[80px] border rounded-sm outline-none resize-none "
             />
             <div className="flex justify-start w-[95%] ">
-              <button className="flex mt-4  bg-purple-400 text-white w-[120px] h-[45px] items-center justify-center rounded-sm hover:cursor-pointer text-[14px]">
+              <button
+                className="flex mt-4  bg-purple-400 text-white w-[120px] h-[45px] items-center justify-center rounded-sm hover:cursor-pointer text-[14px]"
+                onClick={() => {
+                  createProjectComment(data, user.id, productID);
+                }}
+              >
                 comment
               </button>
             </div>

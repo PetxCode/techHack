@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import {
+  createProjectComment,
   showAllUser,
   showOneUser,
   showProjectOneUser,
@@ -31,6 +32,14 @@ export const useOneUser = (userID: string) => {
 export const useOneProject = (projectID: string) => {
   const { data } = useSWR(`one-read-project/${projectID}`, () =>
     showProjectOneUser(projectID)
+  );
+
+  return { data };
+};
+
+export const useProjectComment = (userID: string, projectID: string) => {
+  const { data }: any = useSWR(`read-comment/${projectID}`, () =>
+    createProjectComment(data, userID, projectID)
   );
 
   return { data };
