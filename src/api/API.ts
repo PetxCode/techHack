@@ -111,3 +111,27 @@ export const createProjectComment = async (
     console.log(error);
   }
 };
+
+export const readProjectComment = async (projectID: string) => {
+  try {
+    return await axios
+      .get(`${url}/read-comment/${projectID}`)
+      .then((res: any) => {
+        return res.data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const readProjectCommentReply = async (commentID: string) => {
+  try {
+    return await axios
+      .get(`${url}/read-reply/${commentID}`)
+      .then((res: any) => {
+        return res.data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};

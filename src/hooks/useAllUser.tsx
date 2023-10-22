@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import {
   createProjectComment,
+  readProjectComment,
+  readProjectCommentReply,
   showAllUser,
   showOneUser,
   showProjectOneUser,
@@ -43,4 +45,20 @@ export const useProjectComment = (userID: string, projectID: string) => {
   );
 
   return { data };
+};
+
+export const useProjectCommentRead = (projectID: string) => {
+  const { data: projectData }: any = useSWR(`read-comment/${projectID}`, () =>
+    readProjectComment(projectID)
+  );
+
+  return { projectData };
+};
+
+export const useProjectCommentReadReply = (commentID: string) => {
+  const { data: commentData }: any = useSWR(`read-reply/${commentID}`, () =>
+    readProjectCommentReply(commentID)
+  );
+
+  return { commentData };
 };

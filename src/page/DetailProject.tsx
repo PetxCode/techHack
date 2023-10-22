@@ -1,10 +1,17 @@
 import polo from "../assets/pix.jpg";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useOneProject, useOneUser } from "../hooks/useAllUser";
+import {
+  useOneProject,
+  useOneUser,
+  useProjectCommentRead,
+  useProjectCommentReadReply,
+} from "../hooks/useAllUser";
 import { createProjectComment } from "../api/API";
 import { useUserDataState } from "../global/jotai";
 import { useState } from "react";
+import Personcard from "./Personcard";
+import ReplyScreen from "./ReplyScreen";
 
 const DetailedProjectScreen = () => {
   const { productID, id }: any = useParams();
@@ -13,6 +20,8 @@ const DetailedProjectScreen = () => {
   let { data } = useOneProject(productID!);
 
   const [state, setState] = useState<string>("");
+
+  const { projectData } = useProjectCommentRead(productID);
 
   return (
     <Container>
@@ -74,59 +83,72 @@ const DetailedProjectScreen = () => {
           <div className="w-full flex flex-col items-center">
             <textarea
               placeholder="say something..."
-              className="text-[12px] p-4 w-[95%] h-[80px] border rounded-sm outline-none resize-none "
+              className="text-[12px] p-2 w-[95%] h-[80px] border rounded-sm outline-none resize-none "
+              value={state}
+              onChange={(e: any) => {
+                setState(e.target.value);
+              }}
             />
             <div className="flex justify-start w-[95%] ">
-              <button
-                className="flex mt-4  bg-purple-400 text-white w-[120px] h-[45px] items-center justify-center rounded-sm hover:cursor-pointer text-[14px]"
-                onClick={() => {
-                  createProjectComment(data, user.id, productID);
-                }}
-              >
-                comment
-              </button>
+              {data?.user === user?.id ? (
+                <button
+                  className={`
+                  flex mt-4 bg-purple-700 text-white w-[120px] h-[45px] items-center justify-center rounded-sm hover:cursor-pointer text-[13px] leading-tight
+                  `}
+                  onClick={() => {
+                    // createProjectComment(state, user.id, productID);
+                  }}
+                >
+                  Don't worry, it's your Project
+                </button>
+              ) : (
+                <button
+                  className="flex mt-4  bg-purple-700 text-white w-[120px] h-[45px] items-center justify-center rounded-sm hover:cursor-pointer text-[14px]"
+                  onClick={() => {
+                    createProjectComment(state, user.id, productID);
+                  }}
+                >
+                  comment
+                </button>
+              )}
             </div>
           </div>
           <br />
           <hr />
           <br />
-          <div className="mx-4 text-[12px]">
-            <div className="flex mb-2 ">
-              <img
-                src={polo}
-                className="w-[40px] h-[40px] rounded-full border-2 border-purple-600 mr-2 object-cover"
-              />
-              <div>
-                <div className="leading-tight ">name</div>
-                <span className="text-[10px] leading-tight  font-bold ">
-                  Time
-                </span>
-              </div>
-            </div>
-            <div className="p-2 bg-purple-100 rounded-sm">
-              comments Obcaecati dolor est nulla, similique commodi rerum!
-              Obcaecati dolor est nulla, similique commodi rerum! Obcaecati
-              dolor est nulla, similique commodi rerum!
-            </div>
+          {projectData?.length > 0 ? (
+            <>
+              {projectData?.map((props: any) => (
+                <div className="mx-4 text-[12px] my-4 ">
+                  <Personcard props={props} />
+                  <div className="p-2 bg-purple-100 rounded-sm">
+                    {props?.title}
+                  </div>
 
-            <div className="flex items-center my-2 ml-8 text-[11px] ">
-              <img
-                src={polo}
-                className="w-[30px] h-[30px] rounded-full border-2 border-purple-600 mr-2 object-cover"
-              />
-              <div>
-                <div className="leading-tight ">name</div>
-                <span className="text-[10px] leading-tight font-bold ">
-                  Time
-                </span>
-              </div>
+                  {data.user === user.id && (
+                    <div className=" flex justify-end w-[100%]">
+                      <div className="border mt-1 w-[90%] flex  ">
+                        <input
+                          className="flex-1 outline-none pl-1 "
+                          placeholder="reply comment"
+                        />
+                        <button className="px-2 py-1 bg-purple-300 text-white rounded-sm">
+                          Reply
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  <ReplyScreen props={props} />
+                </div>
+              ))}
+            </>
+          ) : (
+            <div className="text-[12px]   font-[400] p-2 bg-purple-100 ">
+              Be the First to comment on the Project because No comment Yet, on
+              this Project
             </div>
-            <div className="p-2 bg-purple-50 rounded-sm ml-8 text-[11px] ">
-              comments Obcaecati dolor est nulla, similique commodi rerum!
-              Obcaecati dolor est nulla, similique commodi rerum! Obcaecati
-              dolor est nulla, similique commodi rerum!
-            </div>
-          </div>
+          )}
           <br />
           <hr />
           <br />
