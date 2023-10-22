@@ -3,22 +3,26 @@ import pix from "../assets/pix.jpg";
 import { GrTasks } from "react-icons/gr";
 import { BsPeople } from "react-icons/bs";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { useAllUser } from "../hooks/useAllUser";
+import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
   const [toggle, setToggle] = useState(false);
+
   const onToggle = () => {
     setToggle(!toggle);
   };
 
-  const data = Array.from({ length: 10 }, () => {
-    return { name: "Petr" };
-  });
+  const { data } = useAllUser();
 
   return (
     <div>
       <div className="mt-[100px] flex flex-wrap justify-center w-full ">
         {data?.map((props: any) => (
-          <div className="w-[220px] min-h-[200px] border rounded-sm p-2 m-2 ">
+          <Link
+            to={`${props._id}/project`}
+            className="w-[220px] min-h-[200px] border rounded-sm p-2 m-2 "
+          >
             <div className="flex ">
               <img
                 src={pix}
@@ -26,10 +30,11 @@ const HomeScreen = () => {
               />
               <div>
                 <div className="text-[12px] ml-2 leading-[1] uppercase font-bold ">
-                  name
+                  {props?.userName}
                 </div>
                 <div className="text-[11px] ml-2 leading-[1.5] flex items-center">
-                  <GrTasks className="mr-1" /> &middot; 3 Projects
+                  <GrTasks className="mr-1" /> &middot; {props?.projects.length}{" "}
+                  Projects
                 </div>
               </div>
             </div>
@@ -58,11 +63,12 @@ const HomeScreen = () => {
               <div>
                 <BsPeople />
                 <div className="text-[10px]">
-                  3 Followers &middot; 4 Following{" "}
+                  {props?.follower.length} Followers &middot;{" "}
+                  {props?.following.length} Following{" "}
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

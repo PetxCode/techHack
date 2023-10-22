@@ -25,12 +25,12 @@ export const mainRouter = createBrowserRouter([
       },
       {
         index: true,
-        path: "project",
+        path: ":id/project",
         element: <ProjectScreen />,
       },
       {
         index: true,
-        path: "detailed-project",
+        path: ":id/project/:productID/detailed-project",
         element: <DetailedProjectScreen />,
       },
       {

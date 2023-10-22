@@ -2,13 +2,16 @@ import { AiOutlineHome } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
 import { FaProjectDiagram } from "react-icons/fa";
 import pix from "../../assets/pix.jpg";
-import { useToggle, useUserData } from "../../global/jotai";
+import { useToggle, useUserData, useUserDataState } from "../../global/jotai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useOneUser } from "../../hooks/useAllUser";
 
 const Sider = () => {
   const [state, setState] = useToggle();
   const [user, setUser]: any = useUserData();
+  const [userID]: any = useUserDataState();
+  const { userData } = useOneUser(userID.id!);
 
   return (
     <Container>
@@ -82,6 +85,9 @@ const Sider = () => {
               src={pix}
               className="w-[50px] h-[50px] rounded-full border mb-2 object-cover shadow-md "
             />
+            <div className="text-[12px] leading-tight mb-4 uppercase font-bold">
+              {userData?.data?.userName}
+            </div>
 
             <button
               className="px-4 py-2 bg-purple-700 text-white rounded transition-all duration-300 hover:transform-[scale(0.09)] hover:cursor-pointer "

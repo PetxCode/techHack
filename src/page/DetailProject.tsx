@@ -1,11 +1,14 @@
-import { AiOutlineLike } from "react-icons/ai";
-import { BiCommentDots } from "react-icons/bi";
 import polo from "../assets/pix.jpg";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useOneProject, useOneUser } from "../hooks/useAllUser";
 
 const DetailedProjectScreen = () => {
-  let data = Array.from({ length: 10 });
-  console.log(data);
+  const { productID, id }: any = useParams();
+
+  let { userData }: any = useOneUser(id);
+  let { data } = useOneProject(productID!);
+
   return (
     <Container>
       <Main>
@@ -14,7 +17,12 @@ const DetailedProjectScreen = () => {
           <br />
           <br />
 
-          <div className=" pl-4">Developed product of Name</div>
+          <div className=" pl-4 flex">
+            Developed product by{" "}
+            <div className=" ml-1 font-bold capitalize ">
+              {userData?.data?.userName}
+            </div>
+          </div>
           <br />
           <hr />
           <br />
@@ -25,12 +33,16 @@ const DetailedProjectScreen = () => {
           />
 
           <div className=" pl-4 text-[12px]">
-            <div className="text-[15px] font-bold capitalize mt-8">
-              Project Name
+            <div className="text-[14px] capitalize mt-8 flex items-center">
+              Project Name:
+              <strong className=" ml-1 break-words flex-1 capitalize">
+                {" "}
+                {data?.title}
+              </strong>
             </div>
             <div className="mb-5">
-              <a href="https://google.com" target="_blank">
-                https://google.com
+              <a href={`${data?.url}`} target="_blank">
+                {data?.url}
               </a>
             </div>
           </div>
@@ -40,10 +52,16 @@ const DetailedProjectScreen = () => {
           <div className=" pl-4 ">Assigned Task</div>
 
           <div className="bg-purple-50 p-2 rounded-sm mt-1 text-[12px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
-            dolor est nulla, similique commodi rerum! Obcaecati dolor est nulla,
-            similique commodi rerum! Obcaecati dolor est nulla, similique
-            commodi rerum!
+            {data?.task}
+          </div>
+          <br />
+          <hr />
+          <br />
+
+          <div className=" pl-4 ">Motivation</div>
+
+          <div className="bg-purple-50 p-2 rounded-sm mt-1 text-[12px] ">
+            {data?.motivation}
           </div>
           <br />
           <hr />

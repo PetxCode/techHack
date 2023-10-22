@@ -5,7 +5,13 @@ import hard from "../assets/100.jpg";
 import styled from "styled-components";
 import { useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
-import { useCountedNumber, useCreateProject } from "../global/jotai";
+import {
+  useCountedNumber,
+  useCreateProject,
+  useUserDataState,
+} from "../global/jotai";
+import { createProject } from "../api/API";
+import { useNavigate } from "react-router-dom";
 
 const Step1 = () => {
   const [state, setState]: any = useCreateProject();
@@ -151,8 +157,10 @@ const Step2 = () => {
 };
 
 const Step3 = () => {
+  const navigate = useNavigate();
   const [state, setState]: any = useCreateProject();
   const [stateCount, setStateCount] = useCountedNumber();
+  const [userID]: any = useUserDataState();
 
   const [stack, setStack] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -162,8 +170,18 @@ const Step3 = () => {
     console.log("state", e.target.files[0]);
     let file = e.target.files[0];
     let save = URL.createObjectURL(file);
+    setImageFile(file);
     setImage(save);
   };
+
+  const formData = new FormData();
+  formData.append("url", state.url);
+  formData.append("task", state.task);
+  formData.append("title", state.title);
+  formData.append("motivation", state.about);
+
+  formData.append("stack", stack);
+  formData.append("avatar", imageFile);
 
   return (
     <div className="mt-8 w-full flex items-center flex-col ">
@@ -244,7 +262,11 @@ const Step3 = () => {
                 stack: state.stack !== "" ? state.stack : stack,
                 image: state.image !== "" ? state.image : image,
               });
+
               console.log(state);
+              createProject(formData, userID.id).then(() => {
+                navigate("/");
+              });
             }}
           >
             Submit

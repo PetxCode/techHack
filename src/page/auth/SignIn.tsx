@@ -28,7 +28,6 @@ const SignIn = () => {
   });
 
   const onSubmit = handleSubmit(async (data: any) => {
-    console.log("Push");
     setLoading(true);
 
     signInUser(data)
