@@ -18,6 +18,8 @@ const SignIn = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  console.log(userState, loading);
+
   const yupSchema = yup.object({
     email: yup.string().email().required("Field must be filled"),
     password: yup.string().required("Field must be filled"),
@@ -148,17 +150,6 @@ const Image = styled.img`
   margin-bottom: 30px;
 `;
 
-const Error = styled.p`
-  margin: 0;
-  color: red;
-  display: flex;
-  justify-content: flex-end;
-  width: 80%;
-  font-size: 12px;
-  margin-top: -10px;
-  margin-right: 5px;
-`;
-
 const Blocker = styled.div`
   position: absolute;
   top: -3px;
@@ -259,13 +250,6 @@ const Card = styled.div`
     margin: 0;
     padding: 0;
   }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
 `;
 
 const Container = styled.div`

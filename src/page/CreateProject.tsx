@@ -17,6 +17,7 @@ const Step1 = () => {
   const [title, setTitle] = useState<string>(state.title);
   const [url, setURL] = useState<string>(state.url);
 
+  console.log(stateCount);
   return (
     <div className="mt-8 w-full flex items-center flex-col ">
       <div className="w-full flex justify-center">
@@ -58,7 +59,7 @@ const Step1 = () => {
         }}
       />
 
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-[91%]">
         <button
           className="bg-purple-500 text-white px-5 text-[12px] mt-4 py-2 rounded-sm mx-1"
           onClick={() => {
@@ -84,6 +85,9 @@ const Step2 = () => {
 
   const [task, setTask] = useState<string>(state.task);
   const [about, setAbout] = useState<string>(state.about);
+
+  console.log(stateCount);
+
   return (
     <div className="mt-8 w-full flex items-center flex-col ">
       <div className="w-full flex justify-center">
@@ -124,7 +128,7 @@ const Step2 = () => {
         }}
       />
 
-      <div className="flex w-full justify-end">
+      <div className="flex  w-[91%] justify-end">
         <button
           className="bg-black text-white px-5 text-[12px] mt-4 py-2 rounded-sm mx-1 "
           onClick={() => {
@@ -158,6 +162,8 @@ const Step3 = () => {
   const [state, setState]: any = useCreateProject();
   const [stateCount, setStateCount] = useCountedNumber();
   const [userID]: any = useUserDataState();
+
+  console.log(stateCount);
 
   const [stack, setStack] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -231,7 +237,7 @@ const Step3 = () => {
         }}
       />
 
-      <div className="flex w-full justify-end">
+      <div className="flex  w-[91%] justify-end">
         <button
           className="bg-black text-white w-[67px] h-[35px] flex justify-center items-center text-[12px] mt-4  rounded-sm mx-1 "
           onClick={() => {

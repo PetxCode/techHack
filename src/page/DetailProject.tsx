@@ -5,7 +5,6 @@ import {
   useOneProject,
   useOneUser,
   useProjectCommentRead,
-  useProjectCommentReadReply,
 } from "../hooks/useAllUser";
 import { createProjectComment } from "../api/API";
 import { useUserDataState } from "../global/jotai";

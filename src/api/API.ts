@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url: string = "http://localhost:2266";
+// const url: string = "http://localhost:2266";
+const url: string = "https://codelab-hack.onrender.com";
 // localhost:2266/start-follow/6533ca10ef7f623dbbc62496/6533c4c6ef7f623dbbc62480/
 
 export const followME = async (userID: string, friendID: string) => {

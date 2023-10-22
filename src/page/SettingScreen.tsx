@@ -1,12 +1,9 @@
 import { AiOutlineCamera } from "react-icons/ai";
-import { ImCloudUpload } from "react-icons/im";
-import { Link, useParams } from "react-router-dom";
-import { useOneUser, useProjectUser } from "../hooks/useAllUser";
+import { useOneUser } from "../hooks/useAllUser";
 import polo from "../assets/pix.jpg";
-import { followME, updateProfileInfo, updateProfileNameInfo } from "../api/API";
+import { updateProfileInfo, updateProfileNameInfo } from "../api/API";
 import { useUserDataState } from "../global/jotai";
 import { useState } from "react";
-import hard from "../assets/100.jpg";
 
 import { GrTasks } from "react-icons/gr";
 import { BsPeople } from "react-icons/bs";
@@ -14,7 +11,6 @@ import Swal from "sweetalert2";
 
 const SettingScreen = () => {
   const [userID]: any = useUserDataState();
-  const { id } = useParams();
   const { userData } = useOneUser(userID.id);
 
   const [stack, setStack] = useState<string>(userData?.data?.userName);
@@ -35,12 +31,10 @@ const SettingScreen = () => {
   (function () {
     imageFile !== ""
       ? setTimeout(() => {
-          console.log("commented");
           updateProfileInfo(userID.id, formData);
 
-          clearInterval;
           setImageFile("");
-        }, 2000)
+        }, 1000)
       : null;
   })();
 

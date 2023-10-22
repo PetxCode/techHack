@@ -1,6 +1,5 @@
 import { AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
-import { FaProjectDiagram } from "react-icons/fa";
 import pix from "../../assets/pix.jpg";
 import { useToggle, useUserDataState } from "../../global/jotai";
 import styled from "styled-components";
@@ -82,7 +81,7 @@ const MenuSider = () => {
 
           <div className="flex flex-col items-center mb-6">
             <img
-              src={pix}
+              src={userData?.data?.avatar ? userData?.data?.avatar : pix}
               className="w-[50px] h-[50px] rounded-full border mb-2 object-cover shadow-md "
             />
             <div className="text-[12px] leading-tight mb-4 uppercase font-bold ">

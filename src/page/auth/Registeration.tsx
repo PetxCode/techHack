@@ -24,6 +24,7 @@ const Register = () => {
     resolver: yupResolver(yupSchema),
   });
 
+  console.log(loading);
   const onSubmit = handleSubmit(async (data: any) => {
     setLoading(true);
     createUser(data)
@@ -127,16 +128,6 @@ const Image = styled.img`
   margin-top: 30px;
   margin-bottom: 30px;
 `;
-const Error = styled.p`
-  margin: 0;
-  color: red;
-  display: flex;
-  justify-content: flex-end;
-  width: 80%;
-  font-size: 12px;
-  margin-top: -15px;
-  margin-right: 5px;
-`;
 
 const Blocker = styled.div`
   position: absolute;
@@ -152,13 +143,6 @@ const InputHolder = styled.div`
   position: relative;
   width: 90%;
   margin: 10px 0;
-`;
-
-const TextStart = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #7e22ce;
 `;
 
 const Span = styled(Link)`

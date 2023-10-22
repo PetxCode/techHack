@@ -12,6 +12,9 @@ const Sider = () => {
   const [userID]: any = useUserDataState();
   const { userData } = useOneUser(userID.id!);
 
+  console.log(state);
+  console.log(user);
+
   return (
     <Container>
       <div
@@ -81,7 +84,7 @@ const Sider = () => {
 
           <div className="flex flex-col items-center mb-6">
             <img
-              src={pix}
+              src={userData?.data?.avatar ? userData?.data?.avatar : pix}
               className="w-[50px] h-[50px] rounded-full border mb-2 object-cover shadow-md "
             />
             <div className="text-[12px] leading-tight mb-4 uppercase font-bold">

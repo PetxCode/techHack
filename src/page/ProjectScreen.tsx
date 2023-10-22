@@ -12,6 +12,9 @@ const ProjectScreen = () => {
   const { data } = useProjectUser(id!);
   const { userData } = useOneUser(id!);
 
+  console.log("id2: ", userData?.data?._id);
+  console.log("id: ", userID.id);
+
   return (
     <div className="w-[100%] mt-[50px]">
       <div className=" flex items-center flex-col ">
@@ -32,15 +35,17 @@ const ProjectScreen = () => {
                 </a>
               </div>
 
-              <div
-                className="h-[40px] w-[100px] bg-purple-700 rounded-sm text-white flex items-center justify-center hover:cursor-pointer "
-                onClick={() => {
-                  followME(userID.id!, id!);
-                  console.log(userID.id!, id!);
-                }}
-              >
-                Follow Me
-              </div>
+              {userData?.data?._id !== userID.id && (
+                <div
+                  className="h-[40px] w-[100px] bg-purple-700 rounded-sm text-white flex items-center justify-center hover:cursor-pointer "
+                  onClick={() => {
+                    followME(userID.id!, id!);
+                    console.log(userID.id!, id!);
+                  }}
+                >
+                  Follow Me
+                </div>
+              )}
             </div>
             <br />
             <hr />

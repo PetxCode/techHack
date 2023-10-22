@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import pix from "../assets/pix.jpg";
 import { GrTasks } from "react-icons/gr";
 import { BsPeople } from "react-icons/bs";
@@ -25,7 +25,7 @@ const HomeScreen = () => {
           >
             <div className="flex ">
               <img
-                src={pix}
+                src={props?.avatar ? props?.avatar : pix}
                 className=" object-cover w-[40px] h-[40px] rounded-full "
               />
               <div>

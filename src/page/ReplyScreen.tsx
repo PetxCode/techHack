@@ -1,8 +1,6 @@
 import { FC } from "react";
-import polo from "../assets/pix.jpg";
 import { useProjectCommentReadReply } from "../hooks/useAllUser";
-import moment from "moment";
-import Personcard from "./Personcard";
+
 import ReplyPersonal from "./ReplyPersonal";
 
 interface iProps {

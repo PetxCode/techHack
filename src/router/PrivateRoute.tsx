@@ -6,6 +6,7 @@ const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const [userState, setUserState] = useUserDataState();
 
   const data = JSON.parse(localStorage.getItem("stateUsers")!);
+  console.log(userState);
 
   useEffect(() => {
     setUserState(jwtDecode(data)!);
