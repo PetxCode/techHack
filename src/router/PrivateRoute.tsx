@@ -2,6 +2,7 @@ import { PropsWithChildren, FC, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useUserDataState } from "../global/jotai";
 import jwtDecode from "jwt-decode";
+import ScrollToTop from "../scrollToTop";
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const [userState, setUserState] = useUserDataState();
 
@@ -12,7 +13,15 @@ const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
     setUserState(jwtDecode(data)!);
   }, []);
 
-  return <div>{data ? <div>{children}</div> : <Navigate to="/sign-in" />}</div>;
+  return (
+    <div>
+      {data ? (
+        <ScrollToTop>{children}</ScrollToTop>
+      ) : (
+        <Navigate to="/sign-in" />
+      )}
+    </div>
+  );
 };
 
 export default PrivateRoute;

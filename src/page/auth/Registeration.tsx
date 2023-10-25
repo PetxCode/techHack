@@ -8,6 +8,7 @@ import logo from "../../assets/logo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../api/API";
+import LoadingState from "../../LoadingState";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const Register = () => {
 
   return (
     <Container>
-      {/* {loading ? <LoadingState /> : null} */}
+      {loading ? <LoadingState /> : null}
       <Wrapper></Wrapper>
       <NewCard>
         <Card>

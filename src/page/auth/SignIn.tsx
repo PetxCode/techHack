@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import decode from "jwt-decode";
 import { signInUser, verifyUser } from "../../api/API";
 import { useUserData } from "../../global/jotai";
+import LoadingState from "../../LoadingState";
 
 const SignIn = () => {
   const { token } = useParams();
@@ -36,6 +37,8 @@ const SignIn = () => {
       .then((res: any) => {
         setUserState(res);
 
+        console.log(loading);
+        setLoading(false);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -45,8 +48,8 @@ const SignIn = () => {
         }).then(() => {
           navigate("/");
         });
-        setLoading(false);
       })
+
       .catch((error) => {
         Swal.fire({
           title: error.response.data.message,
@@ -69,6 +72,8 @@ const SignIn = () => {
 
   return (
     <Container>
+      {loading ? <LoadingState /> : null}
+
       <NewCard>
         <Card>
           <Form onSubmit={onSubmit}>

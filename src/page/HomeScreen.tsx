@@ -16,8 +16,19 @@ const HomeScreen = () => {
   const { data } = useAllUser();
 
   return (
-    <div>
-      <div className="mt-[100px] flex flex-wrap justify-center w-full ">
+    <div className="mt-[80px] ">
+      <div className="flex justify-center items-center w-full mb-[20px] flex-wrap ">
+        <button className=" transition-all duration-300 hover:scale-[1.02] px-5 py-2 rounded-sm bg-black text-white text-[12px] mx-2 ">
+          All
+        </button>
+        <button className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 ">
+          set07
+        </button>
+        <button className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 ">
+          set08
+        </button>
+      </div>
+      <div className="flex flex-wrap justify-center w-full ">
         {data?.map((props: any) => (
           <Link
             to={`${props._id}/project`}

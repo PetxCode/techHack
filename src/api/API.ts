@@ -22,6 +22,16 @@ export const showAllUser = async () => {
   }
 };
 
+export const show = async () => {
+  try {
+    return await axios.get(`${url}/`).then((res: any) => {
+      return res.data.data;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const showOneUser = async (userID: string) => {
   try {
     return await axios.get(`${url}/one-user/${userID}`).then((res: any) => {
