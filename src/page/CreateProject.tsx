@@ -144,8 +144,9 @@ const Step2 = () => {
             setState({
               title: state.title,
               url: state.url,
-              task: !!state.task ? state.task : task,
-              about: !!state.about ? state.about : about,
+
+              task: task,
+              about: about,
             });
             setStateCount(2);
           }}
@@ -269,6 +270,16 @@ const Step3 = () => {
               console.log(state);
               createProject(formData, userID.id).then(() => {
                 navigate("/");
+                setStateCount(1);
+                setState({
+                  title: "",
+                  url: "",
+                  task: "",
+                  about: "",
+
+                  stack: "",
+                  image: "",
+                });
               });
             }}
           >

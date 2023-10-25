@@ -15,6 +15,10 @@ const SettingScreen = () => {
 
   const [stack, setStack] = useState<string>(userData?.data?.userName);
 
+  const [bio, setBio] = useState<string>(userData?.data?.bio);
+
+  const [setClass, setSetClass] = useState<string>(userData?.data?.classSet);
+
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<string>("");
 
@@ -96,12 +100,31 @@ const SettingScreen = () => {
                   </label>
                 </div>
               </div>
+
               <input
-                className="w-[100%] text-[12px] border rounded-sm h-[45px] pl-2 outline-none "
+                className="w-[100%] text-[12px] border rounded-sm h-[45px] pl-2 outline-none my-2"
                 placeholder="Enter your Choice userName"
                 value={stack}
                 onChange={(e: any) => {
                   setStack(e.target.value);
+                }}
+              />
+
+              <input
+                className="w-[100%] text-[12px] border rounded-sm h-[45px] pl-2 outline-none my-2"
+                placeholder="Enter your set Class: 07"
+                value={setClass}
+                onChange={(e: any) => {
+                  setSetClass(e.target.value);
+                }}
+              />
+
+              <textarea
+                className="w-[100%] h-[90px] text-[12px] border rounded-sm pl-2 outline-none my-2 resize-none"
+                placeholder="Enter your Bio"
+                value={bio}
+                onChange={(e: any) => {
+                  setBio(e.target.value);
                 }}
               />
 

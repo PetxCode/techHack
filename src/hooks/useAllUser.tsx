@@ -4,6 +4,7 @@ import {
   readProjectComment,
   readProjectCommentReply,
   showAllUser,
+  showClassUsers,
   showOneUser,
   showProjectOneUser,
   showProjectUser,
@@ -11,6 +12,18 @@ import {
 
 export const useAllUser = () => {
   const { data } = useSWR("all-user", showAllUser, { refreshInterval: 1000 });
+
+  return { data };
+};
+
+export const useClassUser = (classData: string) => {
+  const { data } = useSWR(
+    ["user-class", classData],
+    () => showClassUsers(classData),
+    {
+      refreshInterval: 1000,
+    }
+  );
 
   return { data };
 };

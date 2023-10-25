@@ -3,28 +3,46 @@ import pix from "../assets/pix.jpg";
 import { GrTasks } from "react-icons/gr";
 import { BsPeople } from "react-icons/bs";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-import { useAllUser } from "../hooks/useAllUser";
+import { useAllUser, useClassUser } from "../hooks/useAllUser";
 import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
   const [toggle, setToggle] = useState(false);
+  const [recordSet, setRecordSet] = useState("");
 
   const onToggle = () => {
     setToggle(!toggle);
   };
 
-  const { data } = useAllUser();
+  const { data } = useClassUser(recordSet);
+
+  console.log(data);
 
   return (
     <div className="mt-[80px] ">
       <div className="flex justify-center items-center w-full mb-[20px] flex-wrap ">
-        <button className=" transition-all duration-300 hover:scale-[1.02] px-5 py-2 rounded-sm bg-black text-white text-[12px] mx-2 ">
+        <button
+          className=" transition-all duration-300 hover:scale-[1.02] px-5 py-2 rounded-sm bg-black text-white text-[12px] mx-2 "
+          onClick={() => {
+            setRecordSet("");
+          }}
+        >
           All
         </button>
-        <button className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 ">
+        <button
+          className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 "
+          onClick={() => {
+            setRecordSet("07");
+          }}
+        >
           set07
         </button>
-        <button className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 ">
+        <button
+          className="px-5 transition-all duration-300 hover:scale-[1.02] py-2 rounded-sm text-white bg-purple-700 text-[12px] mx-2 "
+          onClick={() => {
+            setRecordSet("08");
+          }}
+        >
           set08
         </button>
       </div>
